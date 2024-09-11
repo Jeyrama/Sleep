@@ -7,6 +7,16 @@ Explanation:
 
 If you are not familar with 'await' then you may use 'return' instead like this:
 return new Promise(resolve => setTimeout(resolve, millis));
+
+Code:
+  // @param {number} millis
+  // @return {Promise}
+
+  async function sleep(millis) {    
+  }
+
+  // let t = Date.now()
+  // sleep(100).then(() => console.log(Date.now() - t)) // 100
 */
 
 
@@ -17,3 +27,16 @@ async function sleep(millis) {
 }
 
 // or
+
+let t = Date.now();
+
+async function sleep(millis) {
+  let promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("done");
+    }, millis);
+  });
+
+  let response = await promise;
+}
+sleep(100).then(() => console.log(Date.now() - t));
